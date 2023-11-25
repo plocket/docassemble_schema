@@ -4,7 +4,9 @@
   "description": "A JSON schema for the docasseble platform",
   "main": "index.js",
   "scripts": {
-    "test": "ajv test -s docassemble_schema.json -d tests/valid/*.yml --valid --strict=false --spec=draft2020"
+    "test": "npm run valid; npm run invalid",
+    "valid": "ajv test -s=docassemble_schema.json -d=tests/valid/**/*.yml --valid --strict=false --spec=draft2020",
+    "invalid": "ajv test -s=docassemble_schema.json -d=tests/invalid/**/*.yml --invalid --strict=false --spec=draft2020"
   },
   "repository": {
     "type": "git",
