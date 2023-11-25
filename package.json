@@ -1,0 +1,29 @@
+{
+  "name": "docassemble_schema",
+  "version": "0.1.0",
+  "description": "A JSON schema for the docasseble platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "ajv test -s docassemble_schema.json -d tests/valid/*.yml --valid --strict=false --spec=draft2020"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plocket/docassemble_schema.git"
+  },
+  "keywords": [
+    "json",
+    "schema",
+    "docassemble"
+  ],
+  "author": "plocket",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plocket/docassemble_schema/issues"
+  },
+  "homepage": "https://github.com/plocket/docassemble_schema#readme",
+  "devDependencies": {
+    "ajv": "^8.12.0",
+    "ajv-cli": "^5.0.0",
+    "jsonschema": "^1.4.1"
+  }
+}
