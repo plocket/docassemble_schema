@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm run valid; npm run invalid",
     "valid": "ajv test -s=docassemble_schema.json -d=tests/valid/**/*.yml --valid --strict=false --spec=draft2020",
-    "invalid": "ajv test -s=docassemble_schema.json -d=tests/invalid/**/*.yml --invalid --strict=false --spec=draft2020"
+    "invalid": "ajv test -s=docassemble_schema.json -d=tests/invalid/**/*.yml --invalid --strict=false --spec=draft2020",
+    "ajv": "node test_ajv.js"
   },
   "repository": {
     "type": "git",
