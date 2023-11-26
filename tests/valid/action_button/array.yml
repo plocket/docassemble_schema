@@ -1,9 +1,9 @@
 question: Action buttons
 action buttons:
   - action: action2_for_action_buttons
-    label: 2nd Label for action buttons
+    label: Label for action button
   - label: |
-      Label for action buttons
+      Another label
     action: action_for_action_buttons
     arguments:
       arg1:

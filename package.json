@@ -4,7 +4,7 @@
   "description": "A JSON schema for the docasseble platform",
   "main": "index.js",
   "scripts": {
-    "test": "npm run valid; npm run invalid",
+    "cli": "npm run valid; npm run invalid",
     "valid": "ajv test -s=docassemble_schema.json -d=tests/valid/**/*.yml --valid --strict=false --spec=draft2020",
     "invalid": "ajv test -s=docassemble_schema.json -d=tests/invalid/**/*.yml --invalid --strict=false --spec=draft2020",
     "ajv": "node test_ajv.js"
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/plocket/docassemble_schema#readme",
   "devDependencies": {
+    "@segment/ajv-human-errors": "^2.11.3",
     "ajv": "^8.12.0",
     "ajv-cli": "^5.0.0",
     "chai": "^4.3.10",
