@@ -72,11 +72,17 @@
     },
     "allow downloading": {
       "$comment": "python. done.",
-      "type": ["boolean", "string"]
+      "anyOf": [
+        { "type": "boolean" },
+        { "type": "string" }
+      ]
     },
     "allow emailing": {
       "$comment": "python. Changlelog 0.2.42 - 2018-03-25 accepts python.",
-      "type": ["boolean", "string"]
+      "anyOf": [
+        { "type": "boolean" },
+        { "type": "string" }
+      ]
     },
     "allow reordering": {
       "$comment": "0.4.12 - 2019-03-01. As of 10/12/2023, anything goes, but only `False` or absence prevents reordering, no python evaluated. I'm making the spec we want for this one, not the one we have.",
@@ -276,7 +282,6 @@
     },
     "fields": {
       "$comment": "notes: a field that's a string can't have other items. Also, `label` prop will overwrite an arbitrary `My lable: my_var` configuration.",
-      "additionalProperties": false,
       "type": "array",
       "items": {
         "oneOf": [
@@ -869,7 +874,6 @@
         },
         "content file": {
           "description": "file names in /templates or whole filepaths, and, if `code`, a URL, DAFile, DAFileList, DAFileCollection, or DAStaticFile. also works with `template`? what is `content file code`? https://github.com/jhpyle/docassemble/blob/v1.4.81/docassemble_base/docassemble/base/parse.py#L5082-L5101",
-          "type": ["array", "object", "string"],
           "oneOf": [
             {
               "type": "array",
@@ -900,7 +904,11 @@
         },
         "docx template file": {
           "$comment": "`valid format` == pdf | docx, object uses `code:`. https://docassemble.org/docs/documents.html#docx%20template%20file, https://docassemble.org/docs/documents.html#template%20file%20code",
-          "type": ["array", "object", "string"]
+          "anyOf": [
+            { "type": "array" },
+            { "type": "object" },
+            { "type": "string" }
+          ]
         },
         "editable": {
           "$comment": "https://docassemble.org/docs/documents.html#editable",
@@ -908,7 +916,10 @@
         },
         "field code": {
           "$comment": "https://docassemble.org/docs/documents.html#particfields, https://docassemble.org/docs/documents.html#template%20code",
-          "type": ["boolean", "string"]
+          "anyOf": [
+            { "type": "boolean" },
+            { "type": "string" }
+          ]
         },
         "field variables": {
           "$comment": "https://docassemble.org/docs/documents.html#template%20code",
@@ -944,16 +955,28 @@
         },
         "password": {
           "$comment": "default null? (page vars) https://docassemble.org/docs/documents.html#password",
-          "type": ["array", "object", "string"]
+          "anyOf": [
+            { "type": "array" },
+            { "type": "object" },
+            { "type": "string" }
+          ]
         },
         "pdf/a": {
           "description": "in `features` it's always a bool: https://github.com/jhpyle/docassemble/blob/v1.4.81/docassemble_base/docassemble/base/parse.py#L2150. In attachment, can only exist with `fields` (with a PDF): https://github.com/jhpyle/docassemble/blob/v1.4.81/docassemble_base/docassemble/base/parse.py#L5315. String here can be `<pdfa expression>` (python, I think). https://docassemble.org/docs/documents.html#pdfa.",
-          "type": ["boolean", "string"],
-          "default": false
+          
+          "default": false,
+          "anyOf": [
+            { "type": "boolean" },
+            { "type": "string" }
+          ]
         },
         "pdf template file": {
           "$comment": "`valid format` only pdf, object uses `code:`. https://docassemble.org/docs/documents.html#docx%20template%20file, https://docassemble.org/docs/documents.html#template%20file%20code",
-          "type": ["array", "object", "string"]
+          "anyOf": [
+            { "type": "array" },
+            { "type": "object" },
+            { "type": "string" }
+          ]
         },
         "persistent": {
           "$comment": "https://docassemble.org/docs/documents.html#permissions",
@@ -975,8 +998,11 @@
         "redact": {
           "$comment": "https://docassemble.org/docs/documents.html#redact",
           "description": "python",
-          "type": ["boolean", "string"],
-          "default": true
+          "default": true,
+          "anyOf": [
+            { "type": "boolean" },
+            { "type": "string" }
+          ]
         },
         "rendering font": {
           "$comment": "https://docassemble.org/docs/documents.html#rendering%20font",
@@ -985,12 +1011,18 @@
         },
         "skip undefined": {
           "$comment": "https://docassemble.org/docs/documents.html#template%20code",
-          "type": ["boolean", "string"]
+          "anyOf": [
+            { "type": "boolean" },
+            { "type": "string" }
+          ]
         },
         "tagged pdf": {
           "description": "requires docx. https://docassemble.org/docs/documents.html#pdfa",
-          "type": ["boolean", "string"],
-          "default": false
+          "default": false,
+          "anyOf": [
+            { "type": "boolean" },
+            { "type": "string" }
+          ]
         },
         "template password": {
           "description": "default null? (page vars)",
@@ -998,12 +1030,14 @@
         },
         "update references": {
           "$comment": "https://docassemble.org/docs/documents.html#update%20references",
-          "type": ["boolean", "string"]
+          "anyOf": [
+            { "type": "boolean" },
+            { "type": "string" }
+          ]
         },
         "usedefs": {"type": "string"},
         "valid formats": {
           "description": "https://github.com/jhpyle/docassemble/blob/v1.4.81/docassemble_base/docassemble/base/parse.py#L5136-L5144, https://github.com/jhpyle/docassemble/blob/v1.4.81/docassemble_base/docassemble/base/parse.py#L5261-L5269",
-          "type": ["array", "string"],
           "default": ["*"],
           "oneOf": [
             {
