@@ -7,7 +7,7 @@
     "cli": "npm run valid; npm run invalid",
     "valid": "ajv test -s=docassemble_schema.json -d=tests/valid/**/*.yml --valid --strict=false --spec=draft2020",
     "invalid": "ajv test -s=docassemble_schema.json -d=tests/invalid/**/*.yml --invalid --strict=false --spec=draft2020",
-    "ajv": "node test_ajv.js"
+    "ajv": "node ./test_ajv.js --verbose=false"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "ajv-cli": "^5.0.0",
     "better-ajv-errors": "^1.2.0",
     "chai": "^4.3.10",
-    "jsonschema": "^1.4.1"
+    "jsonschema": "^1.4.1",
+    "minimist": "^1.2.8"
   }
 }
