@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "cli": "npm run valid; npm run invalid",
-    "valid": "ajv test -s=docassemble_schema.json -d=tests/valid/**/*.yml --valid --strict=false --spec=draft2020",
-    "invalid": "ajv test -s=docassemble_schema.json -d=tests/invalid/**/*.yml --invalid --strict=false --spec=draft2020",
-    "ajv": "node ./test_ajv.js --verbose=false"
+    "valid": "ajv test -s=docassemble_schema.json -d=tests/valid/*/*.yml --valid --spec=draft2020",
+    "invalid": "ajv test -s=docassemble_schema.json -d=tests/invalid/*/*.yml --invalid --spec=draft2020",
+    "short": "node ./test_ajv.js --verbose=false --errors-only=false",
+    "long": "node ./test_ajv.js --verbose=true --errors-only=true"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "ajv-cli": "^5.0.0",
     "better-ajv-errors": "^1.2.0",
     "chai": "^4.3.10",
+    "glob": "^10.3.10",
     "jsonschema": "^1.4.1",
     "minimist": "^1.2.8"
   }
