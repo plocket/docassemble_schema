@@ -109,13 +109,6 @@ const all_totals_msg = get_totals_msg({
 console.log(`\n============================\nSummary`);
 console.log(all_totals_msg);
 
-// The oven is done baking
-process.stdout.write(`\u0007`);
-// Neither of these made sounds on OSX, but maybe they'll work on other systems
-exec(`[console]::beep(1000, 500)`, {'shell':`powershell.exe`});
-exec(`rundll32 user32.dll, MessageBeep`);
-// TODO: use a lib to get a more pleasant sound
-
 
 // ================================
 // ================================
