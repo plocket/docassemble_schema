@@ -1,13 +1,24 @@
 // TODO: dependentRequired, dependentSchemas, unevaluatedProperties
 // TODO: oneOf makes test output unclear. Switch to if/then and
 // we can be more explicit about what errors we expect to see.
-// TODO: add `attachment code` to disallowing multiple `attachment...`,
-// though just put it in `question` instead of with each of its
-// siblings
-// TODO: Add invalid tests for each of `attachment...` type props
-// to `attachment` if they don't already exist
-// TODO Remove `single-attachment` `allow downloading`/`allow...`
-// invalid tests
+// TODO: add `attachment code` to disallowing other `attachment...` types
+// and put that disallowing in `questions`
+// TODO: for siblings, include that they must have one of those
+// TODO: Add invalid tests for `attachement...` related sibs
+// if `attachement...` types are missing if they don't already exist
+// TODO: For sibs, remove tests for multiple `attachment...` types -
+// just put that in the `attachment...` types themselves
+// TODO: add fail_attachment_raw-no_content_file that has valid
+// other keys that it needs
+// TODO: to `attachment...` sibs, note they don't need to require
+// `question`, since `attachment...` type props do that already
+
+/** If we get the error "TypeError: left.charCodeAt is not a function",
+ * check node_modules/better-ajv-errors/src/validation-errors/enum.js
+ * which is actually
+ * node_modules/better-ajv-errors/lib/cjs/validation-errors/enum.js
+ * to make sure `findBestMatch` calls `leven` with `value.toString`.
+ * */
 
 // Node
 const fs = require(`fs`);
@@ -48,7 +59,12 @@ const num_failers = failer_paths.length;
 let num_failers_passing = 0;
 for ( let file_path of failer_paths ) {
   const { passed, output_body } = run_test({ schema, file_path, validate })
-  it(`${ file_path } fails correctly`, () => {expect(output_body).toMatchSnapshot();});
+  it(`${ file_path } fails correctly`, () => {expect( output_body ).toMatchSnapshot();});
+  // For new tests, snapshots will automatically be saved so
+  // it'll be hard to catch accidentally passing tests without
+  // this to grab our attention. We do have to check them regardless,
+  // but this will protect us a _little_ from our laziness.
+  it(`fails`, () => { expect( passed ).toBe( false ); });
 }
 
 
@@ -59,11 +75,10 @@ for ( let file_path of failer_paths ) {
 function run_test ({ schema, file_path, validate }) {
   // Not sure validate is needed, maybe it can be global
   const blocks = yaml.load( fs.readFileSync( file_path, `utf8` ));
-  const passed = validate(blocks);
+  const passed = validate( blocks );
   const options = get_options({ blocks });
   const unformatted_output = betterAjvErrors(schema, blocks, validate.errors, options);
   const output_body = format_BAE_error_bodies({ output: unformatted_output });
-  // console.log(output_body);
   return { passed, output_body };
 }
 
@@ -90,18 +105,6 @@ function get_options ({ blocks }) {
   }
 }
 
-function get_msg_heading ({ file_path, passed }) {
-  /** Get the separator and heading of a failing test. */
-  if ( passed ) {
-    return `${ stylize({ message: `Passed:`, styles: `success` }) } ${ file_path }`;
-  } else {
-    return (
-      stylize({ message: `------------------------`, styles: `error` })
-      + `\n${ stylize({ message: `Failed:`, styles: `error` }) } in ${ file_path }`
-    )
-  }
-}
-
 function format_BAE_error_bodies ({ output }) {
   /** Output one test's success or errors data.
    *
@@ -121,6 +124,7 @@ function format_BAE_error_bodies ({ output }) {
   return content;
 }
 
+// TODO: remove styles
 function get_BAE_error_msg_body ({ error_data }) {
   /** Return the body of one Better Ajv Error's failure data. */
 

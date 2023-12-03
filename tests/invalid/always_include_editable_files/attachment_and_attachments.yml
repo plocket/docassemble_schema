@@ -1,0 +1,7 @@
+comment: "`always include editable files` with both `attachment` and `attachments` siblings"
+always include editable files: True
+mandatory: True
+question: A question
+attachments: multiple attachments
+attachment:
+  - content: Attachment content

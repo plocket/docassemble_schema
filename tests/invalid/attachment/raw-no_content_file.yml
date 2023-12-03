@@ -1,0 +1,5 @@
+comment: "Fail `attachment` with `raw` missing `content file`"
+attachment:
+  - raw: True
+    name: Attachment name
+    pdf template file: file.pdf

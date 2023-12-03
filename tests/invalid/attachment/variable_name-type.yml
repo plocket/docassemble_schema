@@ -1,0 +1,4 @@
+comment: "Fail `attachment` with `variable name` as number type"
+attachment:
+  - variable name: 5
+    content: Mako ${ content }.
