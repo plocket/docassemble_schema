@@ -15,7 +15,7 @@ action buttons:
       arg2: argument2_for_action_buttons
     color: primary
     css class: a-class
-    forget prior: "false"
+    forget prior: false
     icon: chevron
     new window: true
     placement: before

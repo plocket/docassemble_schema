@@ -1,6 +1,0 @@
-/action buttons: type must be object.
-Line 3
-/action buttons: oneOf must match exactly one schema in oneOf.
-Line 3
-/action buttons/0/placement must be equal to one of the allowed values: before. Did you mean before?
-Line 6

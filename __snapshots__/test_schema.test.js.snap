@@ -1,125 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fails the right way 1`] = `wrong failure`;
-
-exports[`fails the right way 2`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/no_trigger.yml
- must have required property 'yesnomaybe'.
-[90mLine 1[0m"
-`;
-
-exports[`fails the right way 3`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/no_label.yml
-/action buttons: type must be object.
-[90mLine 2[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
-/action buttons/0 must have required property 'label'.
-[90mLine 2[0m"
-`;
-
-exports[`fails the right way 4`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/no_action.yml
-/action buttons: type must be object.
-[90mLine 2[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
-/action buttons/0 must have required property 'action'.
-[90mLine 2[0m"
-`;
-
-exports[`fails the right way 5`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/code_arbitrary_key.yml
-/action buttons Property arbitrary_key is not expected to be here.
-[90mLine 3[0m
-/action buttons: type must be array.
-[90mLine 2[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
-`;
-
-exports[`fails the right way 6`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_wrong_show_if_type.yml
-/action buttons: type must be object.
-[90mLine 3[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/show if: type must be string.
-[90mLine 6[0m"
-`;
-
-exports[`fails the right way 7`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_wrong_placement_type.yml
-/action buttons: type must be object.
-[90mLine 3[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/placement must be equal to one of the allowed values: before. [1mDid you mean before?[0m
-[90mLine 6[0m"
-`;
-
-exports[`fails the right way 8`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_wrong_new_window_type.yml
-/action buttons: type must be object.
-[90mLine 3[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/new window: type must be boolean.
-[90mLine 6[0m"
-`;
-
-exports[`fails the right way 9`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_wrong_icon_type.yml
-/action buttons: type must be object.
-[90mLine 3[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/icon: type must be string.
-[90mLine 6[0m"
-`;
-
-exports[`fails the right way 10`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_wrong_forget_prior_type.yml
-/action buttons: type must be object.
-[90mLine 3[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/forget prior: type must be boolean.
-[90mLine 6[0m"
-`;
-
-exports[`fails the right way 11`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_wrong_css_class_type.yml
-/action buttons: type must be object.
-[90mLine 3[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/css class: type must be string.
-[90mLine 6[0m"
-`;
-
-exports[`fails the right way 12`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_wrong_color_value.yml
-/action buttons: type must be object.
-[90mLine 3[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/color must be equal to one of the allowed values: primary, secondary, success, danger, warning, info, light, link, dark.
-[90mLine 6[0m"
-`;
-
-exports[`fails the right way 13`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_wrong_arguments_type.yml
-/action buttons: type must be object.
-[90mLine 3[0m
-/action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/arguments: type must be object.
-[90mLine 6[0m"
-`;
-
-exports[`fails the right way 14`] = `
-"[32mPassed:[0m tests/invalid/action_buttons/array_arbitrary_key.yml
+exports[`tests/invalid/action_buttons/array_arbitrary_key.yml fails correctly 1`] = `
+"
 /action buttons: type must be object.
 [90mLine 2[0m
 /action buttons: oneOf must match exactly one schema in oneOf.
@@ -128,8 +10,124 @@ exports[`fails the right way 14`] = `
 [90mLine 5[0m"
 `;
 
-exports[`passes 1`] = `"[32mPassed:[0m tests/valid/action_buttons/minimal.yml"`;
+exports[`tests/invalid/action_buttons/array_wrong_arguments_type.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 3[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 3[0m
+/action buttons/0/arguments: type must be object.
+[90mLine 6[0m"
+`;
 
-exports[`passes 2`] = `"[32mPassed:[0m tests/valid/action_buttons/code.yml"`;
+exports[`tests/invalid/action_buttons/array_wrong_color_value.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 3[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 3[0m
+/action buttons/0/color must be equal to one of the allowed values: primary, secondary, success, danger, warning, info, light, link, dark.
+[90mLine 6[0m"
+`;
 
-exports[`passes 3`] = `"[32mPassed:[0m tests/valid/action_buttons/array.yml"`;
+exports[`tests/invalid/action_buttons/array_wrong_css_class_type.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 3[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 3[0m
+/action buttons/0/css class: type must be string.
+[90mLine 6[0m"
+`;
+
+exports[`tests/invalid/action_buttons/array_wrong_forget_prior_type.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 3[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 3[0m
+/action buttons/0/forget prior: type must be boolean.
+[90mLine 6[0m"
+`;
+
+exports[`tests/invalid/action_buttons/array_wrong_icon_type.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 3[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 3[0m
+/action buttons/0/icon: type must be string.
+[90mLine 6[0m"
+`;
+
+exports[`tests/invalid/action_buttons/array_wrong_new_window_type.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 3[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 3[0m
+/action buttons/0/new window: type must be boolean.
+[90mLine 6[0m"
+`;
+
+exports[`tests/invalid/action_buttons/array_wrong_placement_type.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 3[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 3[0m
+/action buttons/0/placement must be equal to one of the allowed values: before. [1mDid you mean before?[0m
+[90mLine 6[0m"
+`;
+
+exports[`tests/invalid/action_buttons/array_wrong_show_if_type.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 3[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 3[0m
+/action buttons/0/show if: type must be string.
+[90mLine 6[0m"
+`;
+
+exports[`tests/invalid/action_buttons/code_arbitrary_key.yml fails correctly 1`] = `
+"
+/action buttons Property arbitrary_key is not expected to be here.
+[90mLine 3[0m
+/action buttons: type must be array.
+[90mLine 2[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 2[0m"
+`;
+
+exports[`tests/invalid/action_buttons/no_action.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 2[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 2[0m
+/action buttons/0 must have required property 'action'.
+[90mLine 2[0m"
+`;
+
+exports[`tests/invalid/action_buttons/no_label.yml fails correctly 1`] = `
+"
+/action buttons: type must be object.
+[90mLine 2[0m
+/action buttons: oneOf must match exactly one schema in oneOf.
+[90mLine 2[0m
+/action buttons/0 must have required property 'label'.
+[90mLine 2[0m"
+`;
+
+exports[`tests/invalid/action_buttons/no_trigger.yml fails correctly 1`] = `
+"
+ must have required property 'yesnomaybe'.
+[90mLine 1[0m"
+`;
+
+exports[`tests/valid/action_buttons/array.yml passes 1`] = `""`;
+
+exports[`tests/valid/action_buttons/code.yml passes 1`] = `""`;
+
+exports[`tests/valid/action_buttons/minimal.yml passes 1`] = `""`;

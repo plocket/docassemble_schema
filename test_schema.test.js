@@ -13,16 +13,6 @@ const { default: betterAjvErrors } = require(`better-ajv-errors`);
 const schema = require(`./docassemble_schema.json`);
 
 
-// TODO: Maybe loop collecting successes and failures into their own
-// groups (both for just valid, then both for just invalid) and print
-// in those groups? What if the tests actually exit unexpectedly in
-// the middle? All that info would be lost.
-
-const dev_args = {
-  verbose: `false`,
-  "errors-only": `false`
-}
-
 // Schema validator.
 // We're keeping strict mode: https://ajv.js.org/strict-mode.html
 const ajv = new Ajv({
@@ -33,129 +23,42 @@ const ajv = new Ajv({
 const validate = ajv.compile(schema);
 
 
-// console.log(stylize({ message: `--- Positive tests (these YAML blocks should pass) ---`, styles: `important` }));
-
 // Confirm these tests pass
 const passer_paths = globSync(`./tests/valid/*/*.yml`);
 const num_passers = passer_paths.length;
 let num_passers_failing = 0;
-
-// let snapshot_data = null;
 for ( let file_path of passer_paths ) {
-  const { passed, output_body } = run_test({ schema, file_path, validate, dev_args })
-  // snapshot_data = output_body;
-  const heading = get_msg_heading({ file_path, passed });
-  const whole_output = heading + output_body;
-
-  it(`passes`, () => { expect(whole_output).toMatchSnapshot(); });
-
-  // if ( !passed ) { num_passers_failing += 1; }
-  // // Only log errors if that's what dev wants
-  // if ( dev_args[`errors-only`] === `true` ) {
-  //   if ( !passed ) {
-  //     console.log( whole_output );
-  //   }
-  // // Otherwise log every message
-  // } else {
-  //   console.log( whole_output );
-  // }
+  const { passed, output_body } = run_test({ schema, file_path, validate });
+  it(`${ file_path } passes`, () => {expect(output_body).toMatchSnapshot();});
 }
 
-// const snap_state = new snapshot.SnapshotState(`__snapshots__`, {
-//    updateSnapshot: `new`,  // `all` is another option
-//  })
 
-// // Create a snapshot
-// const snap = snapshot.toMatchSnapshot.bind({
-//  // testPath: ``,  // part of the final filename
-//  currentTestName: `snapshot_test`,  // also part of the final filename
-//  // Where the tests are stored
-//  snapshotState: snap_state,
-// });
-
-// // Execute the matcher
-// const result = snap(snapshot_data);
-// snap_state.save();
-
-// console.log( result );
-
-
-
-// const passers_totals_msg = get_totals_msg({
-//   total_tests: num_passers,
-//   num_unexpected: num_passers_failing,
-//   msg_end: `positive tests`
-// });
-// console.log(passers_totals_msg);
-
-
-// console.log(stylize({ message: `\n--- Negative tests (these YAML blocks should fail) ---`, styles: `important` }));
 // Confirm these tests fail
 const failer_paths = globSync(`./tests/invalid/*/*.yml`);
 const num_failers = failer_paths.length;
 let num_failers_passing = 0;
-
 for ( let file_path of failer_paths ) {
-  const { passed, output_body } = run_test({ schema, file_path, validate, dev_args });
-  // TODO: Also fail with unexpected error
-  const met_expectations = !passed;
-  const heading = get_msg_heading({ file_path, passed: met_expectations });
-  const whole_output = heading + output_body;
-
-  it(`fails the right way`, () => { expect(whole_output).toMatchSnapshot(); });
-
-  // if ( !met_expectations ) { num_failers_passing += 1; }
-  // // Only log errors if that's what dev wants
-  // if ( dev_args[`errors-only`] === `true` ) {
-  //   if ( passed ) {
-  //     console.log( heading + output_body );
-  //   }
-  // // Otherwise log every message
-  // } else {
-  //   console.log( heading + output_body );
-  // }
+  const { passed, output_body } = run_test({ schema, file_path, validate })
+  it(`${ file_path } fails correctly`, () => {expect(output_body).toMatchSnapshot();});
 }
-
-// const failers_totals_msg = get_totals_msg({
-//   total_tests: num_failers,
-//   num_unexpected: num_failers_passing,
-//   msg_end: `negative tests`
-// });
-// console.log(failers_totals_msg);
-
-// const all_totals_msg = get_totals_msg({
-//   total_tests: num_passers + num_failers,
-//   num_unexpected: num_passers_failing + num_failers_passing,
-//   msg_end: `in total`
-// });
-// console.log(`\n============================\nSummary`);
-// console.log(all_totals_msg);
 
 
 // ================================
 // ================================
 // === Helpers ===
 
-function run_test ({ schema, file_path, validate, dev_args }) {
+function run_test ({ schema, file_path, validate }) {
   // Not sure validate is needed, maybe it can be global
   const blocks = yaml.load( fs.readFileSync( file_path, `utf8` ));
   const passed = validate(blocks);
-  const options = get_options({ blocks, dev_args });
+  const options = get_options({ blocks });
   const unformatted_output = betterAjvErrors(schema, blocks, validate.errors, options);
-  const output_body = format_BAE_error_bodies({
-    output: unformatted_output,
-    dev_args,
-  });
+  const output_body = format_BAE_error_bodies({ output: unformatted_output });
   // console.log(output_body);
   return { passed, output_body };
 }
 
-function get_options ({ blocks, dev_args }) {
-  // If verbose, make sure the json we output is pretty
-  if ( dev_args.verbose === `true` ) {
-    return { indent: 2 }
-  }
-  // Otherwise, return the options for more consise info
+function get_options ({ blocks }) {
   return {
     format: `js`,
     // Make sure we get the right line numbers by changing
@@ -190,7 +93,7 @@ function get_msg_heading ({ file_path, passed }) {
   }
 }
 
-function format_BAE_error_bodies ({ output, dev_args }) {
+function format_BAE_error_bodies ({ output }) {
   /** Output one test's success or errors data.
    *
    * Data shape (https://github.com/atlassian/better-ajv-errors#format):
@@ -204,26 +107,21 @@ function format_BAE_error_bodies ({ output, dev_args }) {
   // Get the bodies of all errors into one string
   let content = ``;
   for ( const error_data of output ) {
-    content += get_BAE_error_msg_body({ error_data, verbose: dev_args.verbose === `true` })
+    content += get_BAE_error_msg_body({ error_data })
   }
   return content;
 }
 
-function get_BAE_error_msg_body ({ error_data, verbose }) {
-  /** Return the body of one Better Ajv Error's failure data.
-   *  Different output based on how verbose the dev wants it. */
-  // Normal Better Ajv Errors include JSON output.
-  if ( verbose ) {
-    return `\n${ error_data }`;
-  }
+function get_BAE_error_msg_body ({ error_data }) {
+  /** Return the body of one Better Ajv Error's failure data. */
 
-  // Otherwise, short error
   // Make suggestion bold if there is one.
-  let suggestion = error_data.suggestion || '';
+  let suggestion = error_data.suggestion || ``;
   if ( suggestion ) {
     suggestion = " " + stylize({ message: suggestion, styles: `important` })
   }
   return (
+    // TODO: first new line here should be handled higher up
     `\n${ error_data.error }.${ suggestion }`
     // Line numbers are only useful when yaml string are on the
     // same line as their key
@@ -238,23 +136,6 @@ function get_BAE_error_msg_body ({ error_data, verbose }) {
 //   //
 //   return error_data.message.replace(/\. /g, `.\n`);
 // }
-
-function get_totals_msg ({ total_tests, num_unexpected, msg_end }) {
-  /** Returns the message to show at the end of the tests */
-  if ( num_unexpected > 0 ) {
-    return (
-      stylize({
-        message: `--------------\n${ num_unexpected }/${ total_tests } failing ${ msg_end }\n--------------`,
-        styles: `error` })
-    )
-  } else {
-    return (
-      stylize({
-        message: `--------------\n${ total_tests }/${ total_tests } passing ${ msg_end }\n--------------`,
-        styles: `success` })
-    )
-  }
-}
 
 function stylize ({ message, styles }) {
   /** Add styles to a message that will be put in the command prompt

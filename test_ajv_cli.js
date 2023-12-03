@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+/** This script is for a more flexible and controllable output, but
+ *    lacks snapshot matching. */
+
 // TODO: dependentRequired, dependentSchemas, unevaluatedProperties
 
 // Node
@@ -65,72 +68,55 @@ for ( let file_path of passer_paths ) {
   }
 }
 
-const snap_state = new snapshot.SnapshotState(`__snapshots__`, {
-   updateSnapshot: `new`,  // `all` is another option
- })
-
-// Create a snapshot
-const snap = snapshot.toMatchSnapshot.bind({
- // testPath: ``,  // part of the final filename
- currentTestName: `snapshot_test`,  // also part of the final filename
- // Where the tests are stored
- snapshotState: snap_state,
+// Show total expected or unexpected outcomes for positive tests
+const passers_totals_msg = get_totals_msg({
+  total_tests: num_passers,
+  num_unexpected: num_passers_failing,
+  msg_end: `positive tests`
 });
+console.log(passers_totals_msg);
 
 
-// Execute the matcher
-const result = snap(snapshot_data);
-snap_state.save();
+console.log(stylize({ message: `\n--- Negative tests (these YAML blocks should fail) ---`, styles: `important` }));
+// Confirm these tests fail
+const failer_paths = globSync(`./tests/invalid/*/*.yml`);
+const num_failers = failer_paths.length;
+let num_failers_passing = 0;
 
-console.log( result );
+for ( let file_path of failer_paths ) {
+  const { passed, output_body } = run_test({ schema, file_path, validate, dev_args });
+  // TODO: Also fail with unexpected error
+  const met_expectations = !passed;
+  const heading = get_msg_heading({ file_path, passed: met_expectations });
+  if ( !met_expectations ) { num_failers_passing += 1; }
+  // Only log errors if that's what dev wants
+  if ( dev_args[`errors-only`] === `true` ) {
+    if ( passed ) {
+      console.log( heading + output_body );
+    }
+  // Otherwise log every message
+  } else {
+    console.log( heading + output_body );
+  }
+}
+
+// Show total expected or unexpected outcomes for negative tests
+const failers_totals_msg = get_totals_msg({
+  total_tests: num_failers,
+  num_unexpected: num_failers_passing,
+  msg_end: `negative tests`
+});
+console.log(failers_totals_msg);
 
 
-
-// const passers_totals_msg = get_totals_msg({
-//   total_tests: num_passers,
-//   num_unexpected: num_passers_failing,
-//   msg_end: `positive tests`
-// });
-// console.log(passers_totals_msg);
-
-
-// console.log(stylize({ message: `\n--- Negative tests (these YAML blocks should fail) ---`, styles: `important` }));
-// // Confirm these tests fail
-// const failer_paths = globSync(`./tests/invalid/*/*.yml`);
-// const num_failers = failer_paths.length;
-// let num_failers_passing = 0;
-
-// for ( let file_path of failer_paths ) {
-//   const { passed, output_body } = run_test({ schema, file_path, validate, dev_args });
-//   // TODO: Also fail with unexpected error
-//   const met_expectations = !passed;
-//   const heading = get_msg_heading({ file_path, passed: met_expectations });
-//   if ( !met_expectations ) { num_failers_passing += 1; }
-//   // Only log errors if that's what dev wants
-//   if ( dev_args[`errors-only`] === `true` ) {
-//     if ( passed ) {
-//       console.log( heading + output_body );
-//     }
-//   // Otherwise log every message
-//   } else {
-//     console.log( heading + output_body );
-//   }
-// }
-
-// const failers_totals_msg = get_totals_msg({
-//   total_tests: num_failers,
-//   num_unexpected: num_failers_passing,
-//   msg_end: `negative tests`
-// });
-// console.log(failers_totals_msg);
-
-// const all_totals_msg = get_totals_msg({
-//   total_tests: num_passers + num_failers,
-//   num_unexpected: num_passers_failing + num_failers_passing,
-//   msg_end: `in total`
-// });
-// console.log(`\n============================\nSummary`);
-// console.log(all_totals_msg);
+// Show all totals added up together
+const all_totals_msg = get_totals_msg({
+  total_tests: num_passers + num_failers,
+  num_unexpected: num_passers_failing + num_failers_passing,
+  msg_end: `in total`
+});
+console.log(`\n============================\nSummary`);
+console.log(all_totals_msg);
 
 
 // ================================
