@@ -126,8 +126,132 @@ exports[`tests/invalid/action_buttons/no_trigger.yml fails correctly 1`] = `
 [90mLine 1[0m"
 `;
 
+exports[`tests/invalid/allow_downloading/attachment_and_attachments.yml fails correctly 1`] = `
+"
+: oneOf must match exactly one schema in oneOf.
+[90mLine 1[0m"
+`;
+
+exports[`tests/invalid/allow_downloading/no_attachment_or_attachments.yml fails correctly 1`] = `
+"
+ must have required property 'attachments'.
+[90mLine 1[0m"
+`;
+
+exports[`tests/invalid/allow_downloading/type.yml fails correctly 1`] = `
+"
+/allow downloading: type must be boolean.
+[90mLine 2[0m
+/allow downloading: type must be string.
+[90mLine 2[0m
+/allow downloading: anyOf must match a schema in anyOf.
+[90mLine 2[0m"
+`;
+
+exports[`tests/invalid/allow_emailing/attachment_and_attachments.yml fails correctly 1`] = `
+"
+: oneOf must match exactly one schema in oneOf.
+[90mLine 1[0m"
+`;
+
+exports[`tests/invalid/allow_emailing/no_attachment_or_attachments.yml fails correctly 1`] = `
+"
+ must have required property 'attachments'.
+[90mLine 1[0m"
+`;
+
+exports[`tests/invalid/allow_emailing/type.yml fails correctly 1`] = `
+"
+/allow emailing: type must be boolean.
+[90mLine 2[0m
+/allow emailing: type must be string.
+[90mLine 2[0m
+/allow emailing: anyOf must match a schema in anyOf.
+[90mLine 2[0m"
+`;
+
+exports[`tests/invalid/allow_reordering/alone.yml fails correctly 1`] = `
+"
+: dependencies must have property table when property allow reordering is present.
+[90mLine 1[0m"
+`;
+
+exports[`tests/invalid/allow_reordering/type.yml fails correctly 1`] = `
+"
+/allow reordering: type must be boolean.
+[90mLine 7[0m"
+`;
+
 exports[`tests/valid/action_buttons/array.yml passes 1`] = `""`;
 
 exports[`tests/valid/action_buttons/code.yml passes 1`] = `""`;
 
 exports[`tests/valid/action_buttons/minimal.yml passes 1`] = `""`;
+
+exports[`tests/valid/allow_downloading/bool.yml passes 1`] = `""`;
+
+exports[`tests/valid/allow_downloading/single_attachment.yml passes 1`] = `""`;
+
+exports[`tests/valid/allow_downloading/string.yml passes 1`] = `""`;
+
+exports[`tests/valid/allow_emailing/bool.yml passes 1`] = `""`;
+
+exports[`tests/valid/allow_emailing/single_attachment.yml passes 1`] = `""`;
+
+exports[`tests/valid/allow_emailing/string.yml passes 1`] = `""`;
+
+exports[`tests/valid/allow_reordering/false.yml passes 1`] = `""`;
+
+exports[`tests/valid/allow_reordering/true.yml passes 1`] = `""`;
+
+exports[`tests/valid/always_include_editable_files/bool.yml passes 1`] = `""`;
+
+exports[`tests/valid/always_include_editable_files/single_attachment.yml passes 1`] = `""`;
+
+exports[`tests/valid/always_include_editable_files/string.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/array.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/content_file-array.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/content_file-mako.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/content_file-object.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/content_file-raw.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/content_file-string.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/docx_template_file-valid_formats-list-docx.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/docx_template_file-valid_formats-list-docx_and_pdf.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/docx_template_file-valid_formats-list-pdf.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/docx_template_file-valid_formats-list-pdf_and_docx.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/docx_template_file-valid_formats-string-docx.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/docx_template_file-valid_formats-string-pdf.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/object.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/pdf_template_file-no_valid_formats.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/pdf_template_file-valid_formats-list.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/pdf_template_file-valid_formats-string.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/raw-false.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/string.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/valid_formats-docx.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/valid_formats-list_of_multiple.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/valid_formats-random_format.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/valid_formats-rtf_to_docx.yml passes 1`] = `""`;
+
+exports[`tests/valid/attachment/valid_formats-string.yml passes 1`] = `""`;

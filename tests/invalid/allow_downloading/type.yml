@@ -1,0 +1,7 @@
+comment: "Fail `allow downloading` with the wrong type"
+allow downloading:
+  - True
+mandatory: True
+question: A question
+attachment:
+  - content: Attachment content

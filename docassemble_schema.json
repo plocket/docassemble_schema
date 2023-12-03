@@ -168,7 +168,7 @@
       "type": "string"
     },
     "columns": {
-      "type": "string",
+      "type": "array",
       "$comment": "only in table block?"
     },
     "combobox": {
@@ -761,8 +761,11 @@
         "table": {},
         "allow reordering": {},
         "columns": {},
+        "comment": {},
         "edit": {},
-        "rows": {}
+        "id": {},
+        "rows": {},
+        "others like id and comment?": {}
       }
     }
   },

@@ -1,0 +1,4 @@
+comment: "`attachment` with `raw` is false and no `content file`"
+attachment:
+  - raw: False
+    content file: content_filename_string.cpp

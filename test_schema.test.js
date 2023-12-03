@@ -1,4 +1,13 @@
 // TODO: dependentRequired, dependentSchemas, unevaluatedProperties
+// TODO: oneOf makes test output unclear. Switch to if/then and
+// we can be more explicit about what errors we expect to see.
+// TODO: add `attachment code` to disallowing multiple `attachment...`,
+// though just put it in `question` instead of with each of its
+// siblings
+// TODO: Add invalid tests for each of `attachment...` type props
+// to `attachment` if they don't already exist
+// TODO Remove `single-attachment` `allow downloading`/`allow...`
+// invalid tests
 
 // Node
 const fs = require(`fs`);
