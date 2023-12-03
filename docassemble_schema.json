@@ -282,6 +282,7 @@
     },
     "fields": {
       "$comment": "notes: a field that's a string can't have other items. Also, `label` prop will overwrite an arbitrary `My lable: my_var` configuration.",
+      "unevaluatedItems": false,
       "type": "array",
       "items": {
         "oneOf": [

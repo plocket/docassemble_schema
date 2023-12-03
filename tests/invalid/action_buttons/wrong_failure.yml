@@ -1,0 +1,5 @@
+question: Action buttons
+action buttons:
+  - action: action2_for_action_buttons
+    label: Label for action button
+    forget prior: "string"

@@ -1,0 +1,6 @@
+/action buttons: type must be object.
+Line 3
+/action buttons: oneOf must match exactly one schema in oneOf.
+Line 3
+/action buttons/0/color must be equal to one of the allowed values: primary, secondary, success, danger, warning, info, light, link, dark.
+Line 6

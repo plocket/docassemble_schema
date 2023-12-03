@@ -1,0 +1,6 @@
+/action buttons: type must be object.
+Line 2
+/action buttons: oneOf must match exactly one schema in oneOf.
+Line 2
+/action buttons/0 must have required property 'label'.
+Line 2

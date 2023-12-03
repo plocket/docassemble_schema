@@ -11,7 +11,7 @@ const yaml = require(`js-yaml`);
 const Ajv = require(`ajv/dist/2020`);
 // const { AggregateAjvError } = require(`@segment/ajv-human-errors`);
 const { default: betterAjvErrors } = require(`better-ajv-errors`);
-// const chai = require(`chai`);
+const snapshot = require(`jest-snapshot`);
 // Ours
 const schema = require(`./docassemble_schema.json`);
 
@@ -42,14 +42,16 @@ const ajv = new Ajv({
 const validate = ajv.compile(schema);
 
 
-console.log(stylize({ message: '--- Positive tests (these YAML blocks should pass) ---', styles: `important` }));
+console.log(stylize({ message: `--- Positive tests (these YAML blocks should pass) ---`, styles: `important` }));
 // Confirm these tests pass
 const passer_paths = globSync(`./tests/valid/*/*.yml`);
 const num_passers = passer_paths.length;
 let num_passers_failing = 0;
 
+let snapshot_data = null;
 for ( let file_path of passer_paths ) {
   const { passed, output_body } = run_test({ schema, file_path, validate, dev_args })
+  snapshot_data = output_body;
   const heading = get_msg_heading({ file_path, passed });
   if ( !passed ) { num_passers_failing += 1; }
   // Only log errors if that's what dev wants
@@ -63,51 +65,72 @@ for ( let file_path of passer_paths ) {
   }
 }
 
-const passers_totals_msg = get_totals_msg({
-  total_tests: num_passers,
-  num_unexpected: num_passers_failing,
-  msg_end: `positive tests`
+const snap_state = new snapshot.SnapshotState(`__snapshots__`, {
+   updateSnapshot: `new`,  // `all` is another option
+ })
+
+// Create a snapshot
+const snap = snapshot.toMatchSnapshot.bind({
+ // testPath: ``,  // part of the final filename
+ currentTestName: `snapshot_test`,  // also part of the final filename
+ // Where the tests are stored
+ snapshotState: snap_state,
 });
-console.log(passers_totals_msg);
 
 
-console.log(stylize({ message: '\n--- Negative tests (these YAML blocks should fail) ---', styles: `important` }));
-// Confirm these tests fail
-const failer_paths = globSync(`./tests/invalid/*/*.yml`);
-const num_failers = failer_paths.length;
-let num_failers_passing = 0;
+// Execute the matcher
+const result = snap(snapshot_data);
+snap_state.save();
 
-for ( let file_path of failer_paths ) {
-  const { passed, output_body } = run_test({ schema, file_path, validate, dev_args });
-  // TODO: Also fail with unexpected error
-  const met_expectations = !passed;
-  const heading = get_msg_heading({ file_path, passed: met_expectations });
-  if ( !met_expectations ) { num_failers_passing += 1; }
-  // Only log errors if that's what dev wants
-  if ( dev_args[`errors-only`] === `true` ) {
-    if ( passed ) {
-      console.log( heading + output_body );
-    }
-  // Otherwise log every message
-  } else {
-    console.log( heading + output_body );
-  }
-}
+console.log( result );
 
-const failers_totals_msg = get_totals_msg({
-  total_tests: num_failers,
-  num_unexpected: num_failers_passing,
-  msg_end: `negative tests`
-});
-console.log(failers_totals_msg);
 
-const all_totals_msg = get_totals_msg({
-  total_tests: num_passers + num_failers,
-  num_unexpected: num_passers_failing + num_failers_passing,
-  msg_end: `in total`
-});
-console.log(`\n============================\nSummary`);
-console.log(all_totals_msg);
+
+// const passers_totals_msg = get_totals_msg({
+//   total_tests: num_passers,
+//   num_unexpected: num_passers_failing,
+//   msg_end: `positive tests`
+// });
+// console.log(passers_totals_msg);
+
+
+// console.log(stylize({ message: `\n--- Negative tests (these YAML blocks should fail) ---`, styles: `important` }));
+// // Confirm these tests fail
+// const failer_paths = globSync(`./tests/invalid/*/*.yml`);
+// const num_failers = failer_paths.length;
+// let num_failers_passing = 0;
+
+// for ( let file_path of failer_paths ) {
+//   const { passed, output_body } = run_test({ schema, file_path, validate, dev_args });
+//   // TODO: Also fail with unexpected error
+//   const met_expectations = !passed;
+//   const heading = get_msg_heading({ file_path, passed: met_expectations });
+//   if ( !met_expectations ) { num_failers_passing += 1; }
+//   // Only log errors if that's what dev wants
+//   if ( dev_args[`errors-only`] === `true` ) {
+//     if ( passed ) {
+//       console.log( heading + output_body );
+//     }
+//   // Otherwise log every message
+//   } else {
+//     console.log( heading + output_body );
+//   }
+// }
+
+// const failers_totals_msg = get_totals_msg({
+//   total_tests: num_failers,
+//   num_unexpected: num_failers_passing,
+//   msg_end: `negative tests`
+// });
+// console.log(failers_totals_msg);
+
+// const all_totals_msg = get_totals_msg({
+//   total_tests: num_passers + num_failers,
+//   num_unexpected: num_passers_failing + num_failers_passing,
+//   msg_end: `in total`
+// });
+// console.log(`\n============================\nSummary`);
+// console.log(all_totals_msg);
 
 
 // ================================
@@ -146,8 +169,13 @@ function get_options ({ blocks, dev_args }) {
           .replace( /\n\s*]/g, `]` )
           .replace( /^(.)\n\s*/, `\$1` ),
     // Alternatively, get something that retains the yml to json line
-    // number map. Phind think it's pretty unfeasible:
+    // number map - source map. Phind think it's pretty unfeasible:
     // https://www.phind.com/search?cache=c7fq6ftdav4tx8bnpegyj7j3
+    // This issue, though, suggests something about using a listener
+    // https://github.com/nodeca/js-yaml/issues/428, though it's old
+    // jsyaml.safeLoad(file, { listener: callback })
+    // https://github.com/nodeca/js-yaml/blob/aee620a20e85e651073ad8e6468d10a032f0eca8/lib/loader.js#L1380
+    // https://github.com/nodeca/js-yaml/blob/aee620a20e85e651073ad8e6468d10a032f0eca8/lib/loader.js#L1539
   }
 }
 
@@ -187,7 +215,7 @@ function get_BAE_error_msg_body ({ error_data, verbose }) {
    *  Different output based on how verbose the dev wants it. */
   // Normal Better Ajv Errors include JSON output.
   if ( verbose ) {
-    return error_data;
+    return `\n${ error_data }`;
   }
 
   // Otherwise, short error
