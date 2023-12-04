@@ -3,420 +3,419 @@
 exports[`tests/invalid/action_buttons/array_arbitrary_key.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 2[0m
+Line 2
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /action buttons/0 Property arbitrary_key is not expected to be here.
-[90mLine 5[0m"
+Line 5"
 `;
 
 exports[`tests/invalid/action_buttons/array_wrong_arguments_type.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 3[0m
+Line 3
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /action buttons/0/arguments: type must be object.
-[90mLine 6[0m"
+Line 6"
 `;
 
 exports[`tests/invalid/action_buttons/array_wrong_color_value.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 3[0m
+Line 3
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /action buttons/0/color must be equal to one of the allowed values: primary, secondary, success, danger, warning, info, light, link, dark.
-[90mLine 6[0m"
+Line 6"
 `;
 
 exports[`tests/invalid/action_buttons/array_wrong_css_class_type.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 3[0m
+Line 3
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /action buttons/0/css class: type must be string.
-[90mLine 6[0m"
+Line 6"
 `;
 
 exports[`tests/invalid/action_buttons/array_wrong_forget_prior_type.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 3[0m
+Line 3
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /action buttons/0/forget prior: type must be boolean.
-[90mLine 6[0m"
+Line 6"
 `;
 
 exports[`tests/invalid/action_buttons/array_wrong_icon_type.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 3[0m
+Line 3
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /action buttons/0/icon: type must be string.
-[90mLine 6[0m"
+Line 6"
 `;
 
 exports[`tests/invalid/action_buttons/array_wrong_new_window_type.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 3[0m
+Line 3
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /action buttons/0/new window: type must be boolean.
-[90mLine 6[0m"
+Line 6"
 `;
 
 exports[`tests/invalid/action_buttons/array_wrong_placement_type.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 3[0m
+Line 3
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
-/action buttons/0/placement must be equal to one of the allowed values: before. [1mDid you mean before?[0m
-[90mLine 6[0m"
+Line 3
+/action buttons/0/placement must be equal to one of the allowed values: before. Did you mean before?
+Line 6"
 `;
 
 exports[`tests/invalid/action_buttons/array_wrong_show_if_type.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 3[0m
+Line 3
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /action buttons/0/show if: type must be string.
-[90mLine 6[0m"
+Line 6"
 `;
 
 exports[`tests/invalid/action_buttons/code_arbitrary_key.yml fails correctly 1`] = `
 "
 /action buttons Property arbitrary_key is not expected to be here.
-[90mLine 3[0m
+Line 3
 /action buttons: type must be array.
-[90mLine 2[0m
+Line 2
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/action_buttons/no_action.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 2[0m
+Line 2
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /action buttons/0 must have required property 'action'.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/action_buttons/no_label.yml fails correctly 1`] = `
 "
 /action buttons: type must be object.
-[90mLine 2[0m
+Line 2
 /action buttons: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /action buttons/0 must have required property 'label'.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/action_buttons/no_trigger.yml fails correctly 1`] = `
 "
  must have required property 'yesnomaybe'.
-[90mLine 1[0m"
+Line 1"
 `;
 
 exports[`tests/invalid/allow_downloading/attachment_and_attachments.yml fails correctly 1`] = `
 "
 : oneOf must match exactly one schema in oneOf.
-[90mLine 1[0m"
+Line 1"
 `;
 
 exports[`tests/invalid/allow_downloading/no_attachment_or_attachments.yml fails correctly 1`] = `
 "
  must have required property 'attachments'.
-[90mLine 1[0m"
+Line 1"
 `;
 
 exports[`tests/invalid/allow_downloading/type.yml fails correctly 1`] = `
 "
 /allow downloading: type must be boolean.
-[90mLine 2[0m
+Line 2
 /allow downloading: type must be string.
-[90mLine 2[0m
+Line 2
 /allow downloading: anyOf must match a schema in anyOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/allow_emailing/attachment_and_attachments.yml fails correctly 1`] = `
 "
 : oneOf must match exactly one schema in oneOf.
-[90mLine 1[0m"
+Line 1"
 `;
 
 exports[`tests/invalid/allow_emailing/no_attachment_or_attachments.yml fails correctly 1`] = `
 "
  must have required property 'attachments'.
-[90mLine 1[0m"
+Line 1"
 `;
 
 exports[`tests/invalid/allow_emailing/type.yml fails correctly 1`] = `
 "
 /allow emailing: type must be boolean.
-[90mLine 2[0m
+Line 2
 /allow emailing: type must be string.
-[90mLine 2[0m
+Line 2
 /allow emailing: anyOf must match a schema in anyOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/allow_reordering/alone.yml fails correctly 1`] = `
 "
 : dependencies must have property table when property allow reordering is present.
-[90mLine 1[0m"
+Line 1"
 `;
 
 exports[`tests/invalid/allow_reordering/type.yml fails correctly 1`] = `
 "
 /allow reordering: type must be boolean.
-[90mLine 7[0m"
+Line 7"
 `;
 
 exports[`tests/invalid/always_include_editable_files/attachment_and_attachments.yml fails correctly 1`] = `
 "
 : oneOf must match exactly one schema in oneOf.
-[90mLine 1[0m"
+Line 1"
 `;
 
 exports[`tests/invalid/always_include_editable_files/no_attachments.yml fails correctly 1`] = `
 "
  must have required property 'attachments'.
-[90mLine 1[0m"
+Line 1"
 `;
 
 exports[`tests/invalid/always_include_editable_files/type.yml fails correctly 1`] = `
 "
 /always include editable files: type must be boolean.
-[90mLine 2[0m
+Line 2
 /always include editable files: type must be string.
-[90mLine 2[0m
+Line 2
 /always include editable files: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/content_file-code-type.yml fails correctly 1`] = `
 "
 /attachment/0/content file: type must be array.
-[90mLine 3[0m
+Line 3
 /attachment/0/content file: type must be string.
-[90mLine 3[0m
+Line 3
 /attachment/0/content file: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /attachment/0/content file/code: type must be string.
-[90mLine 4[0m
+Line 4
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
-exports[`tests/invalid/attachment/content_file-object-additional_key.yml fails correctly 1`] = `
+exports[`tests/invalid/attachment/content_file-object-additional_arbitrary_key.yml fails correctly 1`] = `
 "
 /attachment/0/content file: type must be array.
-[90mLine 3[0m
-/attachment/0/content file Property not code is not expected to be here.
-[90mLine 4[0m
+Line 3
+/attachment/0/content file Property additional arbitrary key is not expected to be here.
+Line 4
 /attachment/0/content file: type must be string.
-[90mLine 3[0m
+Line 3
 /attachment/0/content file: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
-exports[`tests/invalid/attachment/content_file-object-arbitrary_key.yml fails correctly 1`] = `
+exports[`tests/invalid/attachment/content_file-object-only_arbitrary_key.yml fails correctly 1`] = `
 "
 /attachment/0/content file must have required property 'code'.
-[90mLine 3[0m
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/content_file-type.yml fails correctly 1`] = `
 "
 /attachment/0/content file: type must be array.
-[90mLine 3[0m
+Line 3
 /attachment/0/content file: type must be object.
-[90mLine 3[0m
+Line 3
 /attachment/0/content file: type must be string.
-[90mLine 3[0m
+Line 3
 /attachment/0/content file: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/content-type.yml fails correctly 1`] = `
 "
 /attachment/0/content: type must be string.
-[90mLine 3[0m
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/no_required_props.yml fails correctly 1`] = `
 "
 /attachment/0 must have required property 'pdf template file'.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/pdf_template_file-valid_format-list-not_pdf.yml fails correctly 1`] = `
 "
-/attachment/0/valid formats must be equal to one of the allowed values: pdf, pdf. [1mDid you mean pdf?[0m
-[90mLine 3[0m
+/attachment/0/valid formats must be equal to one of the allowed values: pdf, pdf. Did you mean pdf?
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/pdf_template_file-valid_format-string-not_pdf.yml fails correctly 1`] = `
 "
-/attachment/0/valid formats must be equal to one of the allowed values: pdf, pdf. [1mDid you mean pdf?[0m
-[90mLine 3[0m
+/attachment/0/valid formats must be equal to one of the allowed values: pdf, pdf. Did you mean pdf?
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
-vvvv
 exports[`tests/invalid/attachment/raw-no_content_file.yml fails correctly 1`] = `
 "
 /attachment/0 must have required property 'content file'.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/raw-type.yml fails correctly 1`] = `
 "
 /attachment/0/raw: type must be boolean.
-[90mLine 3[0m
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/valid_formats-docx_and_rtf_to_docx.yml fails correctly 1`] = `
 "
 /attachment/0/valid formats: type must be string.
-[90mLine 3[0m
+Line 3
 /attachment/0/valid formats: not must NOT be valid.
-[90mLine 3[0m
+Line 3
 /attachment/0/valid formats: if must match "then" schema.
-[90mLine 3[0m
+Line 3
 /attachment/0/valid formats: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/valid_formats-type.yml fails correctly 1`] = `
 "
 /attachment/0/valid formats: type must be string.
-[90mLine 3[0m
+Line 3
 /attachment/0/valid formats: not must NOT be valid.
-[90mLine 3[0m
+Line 3
 /attachment/0/valid formats: if must match "then" schema.
-[90mLine 3[0m
+Line 3
 /attachment/0/valid formats: type must be array.
-[90mLine 3[0m
+Line 3
 /attachment/0/valid formats: oneOf must match exactly one schema in oneOf.
-[90mLine 3[0m
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/invalid/attachment/variable_name-type.yml fails correctly 1`] = `
 "
 /attachment/0/variable name: type must be string.
-[90mLine 3[0m
+Line 3
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m
+Line 2
 /attachment: type must be object.
-[90mLine 2[0m
+Line 2
 /attachment: type must be string.
-[90mLine 2[0m
+Line 2
 /attachment: oneOf must match exactly one schema in oneOf.
-[90mLine 2[0m"
+Line 2"
 `;
 
 exports[`tests/valid/action_buttons/array.yml passes 1`] = `""`;

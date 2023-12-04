@@ -27,7 +27,6 @@ const { exec } = require(`child_process`);
 const { globSync } = require(`glob`);
 const yaml = require(`js-yaml`);
 const Ajv = require(`ajv/dist/2020`);
-// const { AggregateAjvError } = require(`@segment/ajv-human-errors`);
 const { default: betterAjvErrors } = require(`better-ajv-errors`);
 // Ours
 const schema = require(`./docassemble_schema.json`);
@@ -131,48 +130,14 @@ function get_BAE_error_msg_body ({ error_data }) {
   // Make suggestion bold if there is one.
   let suggestion = error_data.suggestion || ``;
   if ( suggestion ) {
-    suggestion = " " + stylize({ message: suggestion, styles: `important` })
+    suggestion = ` ${ suggestion }`;
   }
   return (
     // TODO: first new line here should be handled higher up
     `\n${ error_data.error }.${ suggestion }`
     // Line numbers are only useful when yaml string are on the
     // same line as their key
-    + `\n` + stylize({ message: `Line ${ error_data.start.line }`, styles: `aside` })
+    + `\nLine ${ error_data.start.line }`
     // + `\n\x1b[90mLine ${ error_data.start.line }\x1b[0m`
   );
-}
-
-// function get_AHE_error_msg_body ({ error_data }) {
-//   /** Return the body of one Ajv Human Error's failure data.
-//    *  Make sure each error is on its own line. */
-//   //
-//   return error_data.message.replace(/\. /g, `.\n`);
-// }
-
-function stylize ({ message, styles }) {
-  /** Add styles to a message that will be put in the command prompt
-   *  or browser console.
-   *
-   * See https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
-   * See https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
-   *
-   * @param message {str}
-   * @param styles {str} A string of the type of message
-   *  (`error`, `success`, etc.) or a style string itself. */
-  if ( styles === `error` ) {
-    /* styles: */ `bold \x1b[1m, fg red \x1b[31m`
-    styles = `\x1b[1m\x1b[31m`;
-  } else if ( styles === `success` ) {
-    /* styles: */ `fg green \x1b[32m`
-    styles = `\x1b[32m`;
-  } else if ( styles === `important` ) {
-    /* styles: */ `bold \x1b[1m`
-    styles = `\x1b[1m`;
-  } else if ( styles === `aside` ) {
-    /* styles: */ `fg gray \x1b[90m`
-    styles = `\x1b[90m`;
-  }
-  // reset \x1b[0m
-  return `${ styles }${ message }\x1b[0m`;
 }
